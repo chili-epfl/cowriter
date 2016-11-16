@@ -1,0 +1,52 @@
+<launch>
+
+	<!-- arguments to switch activities -->
+	<arg name="activity_memory" default="false" />
+	<arg name="activity_letter_learning" default="false" />
+
+	<!-- Memory arguments -->
+	<arg name="identity" default="test" />
+
+	<!-- Letter learning arguments -->
+    <arg name="use_robot_in_interaction" default="true" />
+    <arg name="nao_ip" default="195.168.1.4" />
+    <arg name="use_sim_nao" default="false" />
+    <arg name="nao_writing" default="$(arg use_robot_in_interaction)" />
+    <arg name="nao_standing" default="false" />
+    <arg name="nao_speaking" default="true" />
+    <arg name="nao_handedness" default="right" /> 
+    <arg name="person_side" default="$(arg nao_handedness)" />   
+    <arg name="language" default="english" />
+    <arg name="writing_surface_frame_id" default="writing_surface" /> 
+    <arg name="letter_model_dataset_directory" default="default"/> 
+    <arg name="shape_log" default="shapes.log"/> 
+    
+
+	<group if="$(arg activity_memory)" >
+		<include file="$(find memory)/launch/memory_launch.launch">
+			<arg name="identity" value="$(arg identity)"/>
+
+		</include>
+	</group>
+
+
+	<group if="$(arg activity_letter_learning)" >
+		<include file="$(find letter_learning_interaction)/launch/nao_learning.launch">
+			<arg name="use_robot_in_interaction" value="$(arg use_robot_in_interaction)"/>
+			<arg name="nao_ip" value="$(arg nao_ip)"/>
+			<arg name="use_sim_nao" value="$(arg use_sim_nao)"/>
+			<arg name="nao_writing" value="$(arg nao_writing)"/>
+			<arg name="nao_standing" value="$(arg nao_standing)"/>
+			<arg name="nao_speaking" value="$(arg nao_speaking)"/>
+			<arg name="nao_handedness" value="$(arg nao_handedness)"/>
+			<arg name="person_side" value="$(arg person_side)"/>
+			<arg name="language" value="$(arg language)"/>
+			<arg name="writing_surface_frame_id" value="$(arg writing_surface_frame_id)"/>
+			<arg name="letter_model_dataset_directory" value="$(arg letter_model_dataset_directory)"/>
+			<arg name="shape_log" value="$(arg shape_log)"/>
+
+		</include>
+	</group>
+
+
+</launch>
