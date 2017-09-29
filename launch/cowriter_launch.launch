@@ -9,7 +9,8 @@
 
 	<!-- Letter learning arguments -->
     <arg name="use_robot_in_interaction" default="true" />
-    <arg name="nao_ip" default="195.168.1.4" />
+    <arg name="nao_ip" default="127.0.0.1" />
+    <arg name="nao_port" default="9559" />
     <arg name="use_sim_nao" default="false" />
     <arg name="nao_writing" default="$(arg use_robot_in_interaction)" />
     <arg name="nao_standing" default="false" />
@@ -25,7 +26,6 @@
 	<group if="$(arg activity_memory)" >
 		<include file="$(find memory)/launch/memory_launch.launch">
 			<arg name="identity" value="$(arg identity)"/>
-
 		</include>
 	</group>
 
@@ -34,6 +34,8 @@
 		<include file="$(find letter_learning_interaction)/launch/nao_learning.launch">
 			<arg name="use_robot_in_interaction" value="$(arg use_robot_in_interaction)"/>
 			<arg name="nao_ip" value="$(arg nao_ip)"/>
+			<arg name="nao_port" value="$(arg nao_port)"/>
+
 			<arg name="use_sim_nao" value="$(arg use_sim_nao)"/>
 			<arg name="nao_writing" value="$(arg nao_writing)"/>
 			<arg name="nao_standing" value="$(arg nao_standing)"/>
